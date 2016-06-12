@@ -26,16 +26,27 @@ boolean firstRun = true;
 Visualization  one;
 Visualization  two;
 Visualization  three;
+float plotX1, plotY1;
+float plotX2, plotY2;
+
 
 /**
  setup method that does all the initial setup work.
  */
 void setup()
 {
+  //Corners of the plotted time series
+  plotX1 = 50;
+  plotX2 = width - plotX1;
+  plotY1 = 60;
+  plotY2 = height - plotY1;
+  
   // steps to perform at start up
   one  =new VisualizationOne();
   two  =new VisualizationTwo();
   three=new VisualizationThree();
+  
+  smooth();
 }
 
 
