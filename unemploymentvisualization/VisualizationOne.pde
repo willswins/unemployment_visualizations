@@ -7,9 +7,9 @@ class VisualizationOne implements Visualization
   */
   public void draw()
   {
-    println("First Visualization");
+    println("US Unemployment Rates");
     //setBackGround(55);
-    setTitle("First Visualization");
-    setSubTitle("First Visualization - SubTitle");
+    setTitle("US Unemployment Rates");
+    setSubTitle("Quarterly unemployment rates for the US from 2009-2013");
   }
 }
