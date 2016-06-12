@@ -11,6 +11,10 @@ class VisualizationOne implements Visualization
   
   float quarterMin, quarterMax;
   float [] quarters;
+  
+  int currentColumn = 0;
+  int columnCount;
+
     
   public void draw()
   {
@@ -35,28 +39,74 @@ class VisualizationOne implements Visualization
     
     strokeWeight(5);
     stroke(#5679C1);
-    drawDataPoints(0);
+    noFill();
+    strokeWeight(2);
+    noFill();
+    drawDataLine(currentColumn);
+    drawDataHighlight(currentColumn);
   }
   
-  public void drawDataPoints(int col){
+  //public void drawDataPoints(int col){
+  //  int rowCount = data.getRowCount();
+  //  for (int row = 0; row< rowCount; row++){
+  //    if (data.isValid(row,col)) {
+  //      float value = data.getFloat(row,col);
+  //      println(value);
+  //      float x = map(quarters[row], quarterMin, quarterMax, plotX1, plotX2);
+  //      float y = map(value, dataMin, dataMax, plotY2, plotY1);
+  //      point(x,y);
+  //    }
+  //  }
+  //}
+  
+  void drawDataLine(int col){
+    beginShape();
     int rowCount = data.getRowCount();
     for (int row = 0; row< rowCount; row++){
       if (data.isValid(row,col)) {
         float value = data.getFloat(row,col);
+        println(value);
         float x = map(quarters[row], quarterMin, quarterMax, plotX1, plotX2);
         float y = map(value, dataMin, dataMax, plotY2, plotY1);
-        point(x, y);
+        vertex(x,y);
+      }
+    }
+    endShape();
+  }
+  
+  void drawDataHighlight(int column){
+    int rowCount = data.getRowCount();
+    for (int row = 0; row< rowCount; row++){
+      if (data.isValid(row,column)) {
+        float value = data.getFloat(row,column);
+        println(value);
+        float x = map(quarters[row], quarterMin, quarterMax, plotX1, plotX2);
+        float y = map(value, dataMin, dataMax, plotY2, plotY1);
+        if (dist(mouseX, mouseY, x, y) < 3){
+          strokeWeight(10);
+          point(x,y);
+          fill(0);
+          textSize(10);
+          textAlign(CENTER);
+          text(nf(value, 0, 2) + " (" + quarters[row] + ")", x, y-8);
+        }
       }
     }
   }
   
-  void drawQuarterLabels() {
-    int rowCount = data.getRowCount();
-    fill(0);
-    textSize(10);
-    textAlign(CENTER, TOP);
-    for (int row = 0; row < rowCount; row ++){
-      println("hello");
+  void keyPress(){
+  if (key =='[') {
+    currentColumn--;
+    if (currentColumn < 0){
+      currentColumn = columnCount -1;
+    }
+    else if (key ==']'){
+      currentColumn++;
+      if (currentColumn == columnCount) {
+        currentColumn = 0;
+      }
     }
   }
+}
+  
 }

@@ -29,7 +29,6 @@ Visualization  three;
 float plotX1, plotY1;
 float plotX2, plotY2;
 
-
 /**
  setup method that does all the initial setup work.
  */
