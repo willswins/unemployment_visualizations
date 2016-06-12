@@ -9,13 +9,13 @@ class VisualizationOne implements Visualization
   FloatTable data;
   float dataMin, dataMax;
   
-  int quarterMin, quarterMax;
-  int [] quarters;
+  float quarterMin, quarterMax;
+  float [] quarters;
     
   public void draw()
   {
     data = new FloatTable("unitedstates.tsv");
-    quarters = int(data.getRowNames());
+    quarters = float(data.getRowNames());
     quarterMin = quarters[0];
     quarterMax = quarters[quarters.length-1];
     println("quarters " + str(quarters[0]));
@@ -47,6 +47,16 @@ class VisualizationOne implements Visualization
         float y = map(value, dataMin, dataMax, plotY2, plotY1);
         point(x, y);
       }
+    }
+  }
+  
+  void drawQuarterLabels() {
+    int rowCount = data.getRowCount();
+    fill(0);
+    textSize(10);
+    textAlign(CENTER, TOP);
+    for (int row = 0; row < rowCount; row ++){
+      println("hello");
     }
   }
 }
