@@ -7,4 +7,14 @@ class VisualizationTwo implements Visualization
     setTitle("Second Visualization");
     setSubTitle("Second Visualization - SubTitle");
   }
+  
+  
+  public void keyReleased()
+  {
+    println("Two: "+key);
+  
+  }
+  
+  
+  
 }

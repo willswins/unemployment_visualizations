@@ -8,4 +8,13 @@ class VisualizationThree implements Visualization
     setTitle("Third Visualization-Winny");
     setSubTitle("Third Visualization - SubTitle");
   }
+  
+  public void keyReleased()
+  {
+    println("Three: "+key);
+
+  }
+  
+  
+  
 }
