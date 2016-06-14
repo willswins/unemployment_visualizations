@@ -26,8 +26,11 @@ boolean firstRun = true;
 Visualization  one;
 Visualization  two;
 Visualization  three;
+Visualization currentVisualization;
 float plotX1, plotY1;
 float plotX2, plotY2;
+  
+
 
 /**
  setup method that does all the initial setup work.
@@ -64,25 +67,25 @@ public void draw() {
     firstRun = false;
     screenToggleOld = screenToggle;
   }
-
+    println("draw Visualization");
   setBackGround(255);
 
   // Screen toggle logic to change display when space bar is pressed.
   switch (screenToggle) {
-  case 0:
-
-    one.draw();
-    break;
-  case 1:
-    two.draw();
-    break;
-  case 2:
-    three.draw();
-    break;
-  default:
-    println("Error: Unknown option");
-    break;
-  }
+    case 0:
+      currentVisualization = one;
+      break;
+    case 1:
+      currentVisualization = two;
+      break;
+    case 2:
+      currentVisualization = three;
+      break;
+    default:
+      println("Error: Unknown option");
+      break;
+    }
+    currentVisualization.draw();
 }
 
 /**
@@ -120,14 +123,17 @@ void setBackGround(int bgColor)
  If yes then increment the toggle value 
  */
 public void keyReleased() {
-  println("Key=" + key);
-  println("KeyCode=" + keyCode);
-  if (32 == keyCode) {
-    screenToggleOld = screenToggle;
-    screenToggle = (screenToggle + 1) % 3;
-    println("screenToggle=" + screenToggle);
+    println("Key=" + key);
+    println("KeyCode=" + keyCode);
+    if (32 == keyCode) {
+      screenToggleOld = screenToggle;
+      screenToggle = (screenToggle + 1) % 3;
+      println("screenToggle=" + screenToggle);
+    } else {
+      currentVisualization.keyReleased();
+      currentVisualization.draw();
+    }
   }
-}
 
 
 /**

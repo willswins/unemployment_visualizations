@@ -94,7 +94,8 @@ class VisualizationOne implements Visualization
     }
   }
   
-  void keyPress(){
+ public void keyReleased(){
+  println("One: "+key);
   if (key =='[') {
     currentColumn--;
     if (currentColumn < 0){
