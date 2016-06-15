@@ -15,6 +15,10 @@ class VisualizationOne implements Visualization
   int currentColumn = 0;
   int columnCount;
 
+  public void mouseMoved() {
+      // TODO Auto-generated method stub
+
+    }
     
   public void draw()
   {
@@ -29,7 +33,7 @@ class VisualizationOne implements Visualization
     
     println("US Unemployment Rates");
     //setBackGround(55);
-    setTitle("US Unemployment Rates");
+    setTitle("US Unemployment Rates",plotX1, plotY1-10);
     setSubTitle("Quarterly unemployment rates for the US from 2009-2013");
     
     fill(255);
@@ -109,5 +113,6 @@ class VisualizationOne implements Visualization
     }
   }
 }
+ void mouseWheel(MouseEvent event){};
   
 }
